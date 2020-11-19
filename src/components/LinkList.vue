@@ -1,14 +1,16 @@
 <template>
   <div class="LinkList">
+    <transition-group name="list-complete">
     <a
         v-for="([title, link], i) in links"
-        :href="link"
+        :href="link" :key="link"
         class="LinkList__item"
         target="_blank" rel="noopener"
     >
       {{ title }}
       <span class="LinkList__strip" :style="{ backgroundColor: colors[i % colors.length] }"></span>
     </a>
+    </transition-group>
   </div>
 </template>
 
@@ -46,10 +48,11 @@ export default class LinkList extends Vue {
   font-size: 1.25em;
   background-color: white;
   margin-bottom: 1em;
-  transition: all ease 200ms;
+  transition: all ease 200ms, transform ease 700ms;
 
   &:hover {
     box-shadow: 0 0 .3em dimgray;
+    transform: scale(1.1);
   }
 }
 
@@ -59,5 +62,13 @@ export default class LinkList extends Vue {
   top: 0;
   bottom: 0;
   width: .5em;
+}
+
+.list-complete-enter, .list-complete-leave-to {
+  opacity: 0;
+  transform: translateX(50vw);
+}
+.list-complete-leave-active {
+  position: absolute;
 }
 </style>

@@ -34,13 +34,14 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Francois+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&family=Work+Sans:wght@700&display=swap');
 
 html, body {
   background-color: #d8d8d8;
   font-family: 'Francois One', sans-serif;
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
 }
 body {
   display: flex;
@@ -51,8 +52,10 @@ body {
   text-align: center;
   color: #2c3e50;
   flex: 1 1 auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
   @media screen and (max-width: 520px){
     max-width: 360px;
   }
@@ -68,5 +71,9 @@ body {
   color: darkgray;
   font-size: .8em;
   margin-bottom: 1em;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
 }
 </style>
