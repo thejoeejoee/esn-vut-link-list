@@ -2,7 +2,17 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 
+import { setupCache } from 'axios-cache-adapter'
+
+const cache = setupCache({
+  maxAge: 15 * 1000
+})
+
 Vue.use(Vuex)
+
+const axios = Axios.create({
+  adapter: cache.adapter
+})
 
 export default new Vuex.Store({
   state: {
@@ -16,13 +26,9 @@ export default new Vuex.Store({
   },
   actions: {
     async loadLinks({state, commit}) {
-      const resp = await Axios.get(
-          state.dataUrl,
-          {
+      const resp = await axios.get(state.dataUrl)
 
-          }
-      )
-
+      // TODO: more robust parsing
       commit('setLinks', resp.data.split('\n').map((l: string) => l.split('\t')))
     }
   },
