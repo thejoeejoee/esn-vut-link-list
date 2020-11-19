@@ -1,40 +1,60 @@
 <template>
-  <div>
-
-    <ul>
-      <li><a href="">link # 11</a></li>
-      <li><a href="">link # 21</a></li>
-      <li><a href="">link # 31</a></li>
-      <li><a href="">link # 41</a></li>
-      <li><a href="">link # 51</a></li>
-    </ul>
-
+  <div class="LinkList">
+    <a
+        class="LinkList__item"
+        v-for="(link, i) in links" href=""
+        target="_blank" rel="noopener"
+    >
+      {{ link }}
+      <span class="LinkList__strip" :style="{backgroundColor: colors[i % colors.length]}"></span>
+    </a>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import {Component, Prop, Vue} from 'vue-property-decorator';
 
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+  colors = [
+    '#00AEEF',
+    '#EC008C',
+    '#7AC143',
+    '#F47B20',
+    '#2E3192',
+  ]
+  links =  ['Fakt dlouhý text protože to někdo pokašlal a napsal tam fakt dlouhý text', ...'Test Dva Tři Pět Osm Devět Deset'.split(' ')]
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" attribute to amit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+.LinkList {
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.LinkList__item {
+  color: black;
+  flex: 1 1 auto;
+  padding: .5em 0;
+  display: block;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  font-size: 1.25em;
+  background-color: white;
+  margin-bottom: 1em;
+  transition: all ease 200ms;
+  &:hover {
+    box-shadow: 0 0 .3em dimgray;
+  }
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+.LinkList__strip {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  width: .5em;
 }
 </style>
