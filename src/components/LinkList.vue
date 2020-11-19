@@ -7,7 +7,7 @@
         target="_blank" rel="noopener"
     >
       {{ title }}
-      <span class="LinkList__strip" :style="{backgroundColor: colors[i % colors.length]}"></span>
+      <span class="LinkList__strip" :style="{ backgroundColor: colors[i % colors.length] }"></span>
     </a>
   </div>
 </template>
@@ -18,7 +18,7 @@ import {State} from "vuex-class";
 
 @Component
 export default class LinkList extends Vue {
-  @State links: Array<Array<string>>;
+  @State links!: Array<Array<string>>;
 
   colors = [
     '#00AEEF',
@@ -47,6 +47,7 @@ export default class LinkList extends Vue {
   background-color: white;
   margin-bottom: 1em;
   transition: all ease 200ms;
+
   &:hover {
     box-shadow: 0 0 .3em dimgray;
   }

@@ -23,13 +23,13 @@ import {
   components: {
     LinkList,
   },
-
-  created() {
-    this.loadLinks()
-  }
 })
 export default class App extends Vue {
   @Action loadLinks: any;
+
+  created() {
+    this.loadLinks();
+  }
 }
 </script>
 
