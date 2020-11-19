@@ -1,2 +1,17 @@
-# esn-link-list
-Simple website for ESN VUT Brno for list of links as target from IG bio.
+# ESN link list
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
