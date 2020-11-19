@@ -9,15 +9,28 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import LinkList from './components/LinkList.vue';
+import {mapActions} from "vuex";
+import {
+  State,
+  Getter,
+  Action,
+  Mutation,
+  namespace
+} from 'vuex-class'
 
-//     https://docs.google.com/spreadsheets/d/e/2PACX-1vSSXCWVC9oGxqMzYloMuIsVA9t1D-ebQ3IszO0MghNnUdHqc_gpDtosptau1r1oXV4SnpB3NQx6U5Ro/pub?gid=323207252&single=true&output=csv
-
+//
 @Component({
   components: {
     LinkList,
   },
+
+  created() {
+    this.loadLinks()
+  }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  @Action loadLinks: any;
+}
 </script>
 
 <style lang="scss">

@@ -1,11 +1,12 @@
 <template>
   <div class="LinkList">
     <a
+        v-for="([title, link], i) in links"
+        :href="link"
         class="LinkList__item"
-        v-for="(link, i) in links" href=""
         target="_blank" rel="noopener"
     >
-      {{ link }}
+      {{ title }}
       <span class="LinkList__strip" :style="{backgroundColor: colors[i % colors.length]}"></span>
     </a>
   </div>
@@ -13,10 +14,12 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator';
+import {State} from "vuex-class";
 
 @Component
-export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
+export default class LinkList extends Vue {
+  @State links: Array<Array<string>>;
+
   colors = [
     '#00AEEF',
     '#EC008C',
@@ -24,7 +27,6 @@ export default class HelloWorld extends Vue {
     '#F47B20',
     '#2E3192',
   ]
-  links =  ['Fakt dlouhý text protože to někdo pokašlal a napsal tam fakt dlouhý text', ...'Test Dva Tři Pět Osm Devět Deset'.split(' ')]
 }
 </script>
 
