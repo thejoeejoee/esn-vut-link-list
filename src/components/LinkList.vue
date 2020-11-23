@@ -2,13 +2,24 @@
   <div class="LinkList">
     <transition-group name="list-complete">
     <a
-        v-for="([title, link], i) in links"
+        v-for="([title, link, theme, icon], i) in links"
         :href="link" :key="link"
         class="LinkList__item"
+        :class="`LinkList__item--${theme}`"
         target="_blank" rel="noopener"
     >
       {{ title }}
-      <span class="LinkList__strip" :style="{ backgroundColor: colors[i % colors.length] }"></span>
+      <span
+          class="LinkList__strip"
+          :class="{'LinkList__strip--with-icon': !!(icon.trim())}"
+          :style="{ backgroundColor: colors[i % colors.length] }"
+      >
+        <img
+            v-if="!!(icon.trim())" class="LinkList__icon"
+            :src="`https://simpleicons.org/icons/${icon}.svg`"
+            :alt="icon"
+        >
+      </span>
     </a>
     </transition-group>
   </div>
@@ -48,20 +59,35 @@ export default class LinkList extends Vue {
   font-size: 1.25em;
   background-color: white;
   margin-bottom: 1em;
-  transition: all ease 200ms, transform ease 700ms;
+  transition:
+      all ease 200ms,
+      transform ease 400ms;
+}
 
-  &:hover {
-    box-shadow: 0 0 .3em dimgray;
-    transform: scale(1.1);
-  }
+.LinkList__item--gray {
+  color: white;
+  background-color: darken(darkgrey, 30%);
 }
 
 .LinkList__strip {
   position: absolute;
-  left: 100%;
+  right: 0;
   top: 0;
   bottom: 0;
   width: .5em;
+  &--with-icon {
+    width: 2.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: 50%;
+    }
+  }
+}
+
+.LinkList__icon {
+  max-height: 100%;
 }
 
 .list-complete-enter, .list-complete-leave-to {
