@@ -2,7 +2,7 @@
   <div class="LinkList">
     <transition-group name="list-complete">
     <a
-        v-for="([title, link, theme, icon], i) in links"
+        v-for="([title, link, theme = '', icon = ''], i) in links"
         :href="link" :key="link"
         class="LinkList__item"
         :class="`LinkList__item--${theme}`"
@@ -11,11 +11,11 @@
       {{ title }}
       <span
           class="LinkList__strip"
-          :class="{'LinkList__strip--with-icon': !!(icon.trim())}"
+          :class="{'LinkList__strip--with-icon': !!((icon || '').trim())}"
           :style="{ backgroundColor: colors[i % colors.length] }"
       >
         <img
-            v-if="!!(icon.trim())" class="LinkList__icon"
+            v-if="!!((icon || '').trim())" class="LinkList__icon"
             :src="`https://simpleicons.org/icons/${icon}.svg`"
             :alt="icon"
         >
