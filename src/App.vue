@@ -56,6 +56,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  padding-bottom: 2em;
   @media screen and (max-width: 520px){
     max-width: 360px;
   }
