@@ -37,7 +37,7 @@ export default class App extends Vue {
 @import url('https://fonts.googleapis.com/css2?family=Francois+One&family=Work+Sans:wght@700&display=swap');
 
 html, body {
-  background-color: #d8d8d8;
+  background-color: lighten(#F47B20, 40%);
   font-family: 'Francois One', sans-serif;
   padding: 0;
   margin: 0;
