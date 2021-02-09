@@ -76,5 +76,6 @@ body {
   bottom: 0;
   text-align: center;
   width: 100%;
+  display: none;
 }
 </style>
